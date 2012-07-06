@@ -1,79 +1,138 @@
-" .vimrc
-" See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
+set nocompatible               " be iMproved
+set encoding=utf-8
+filetype off
 
-" For multi-byte character support (CJK support, for example):
-"set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
-       
-set tabstop=4       " Number of spaces that a <Tab> in the file counts for.
- 
-set shiftwidth=4    " Number of spaces to use for each step of (auto)indent.
- 
-"set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
-                    " Spaces are used in indents with the '>' and '<' commands
-                    " and when 'autoindent' is on. To insert a real tab when
-                    " 'expandtab' is on, use CTRL-V <Tab>.
- 
-set smarttab        " When on, a <Tab> in front of a line inserts blanks
-                    " according to 'shiftwidth'. 'tabstop' is used in other
-                    " places. A <BS> will delete a 'shiftwidth' worth of space
-                    " at the start of the line.
- 
-set showcmd         " Show (partial) command in status line.
+" Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-set number          " Show line numbers.
+Bundle 'gmarik/vundle'
+Bundle 'gmarik/vundle'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'Gundo'
 
-set showmatch       " When a bracket is inserted, briefly jump to the matching
-                    " one. The jump is only done if the match can be seen on the
-                    " screen. The time to show the match can be set with
-                    " 'matchtime'.
- 
-set hlsearch        " When there is a previous search pattern, highlight all
-                    " its matches.
- 
-set incsearch       " While typing a search command, show immediately where the
-                    " so far typed pattern matches.
- 
-set ignorecase      " Ignore case in search patterns.
- 
-set smartcase       " Override the 'ignorecase' option if the search pattern
-                    " contains upper case characters.
- 
-set backspace=2     " Influences the working of <BS>, <Del>, CTRL-W
-                    " and CTRL-U in Insert mode. This is a list of items,
-                    " separated by commas. Each item allows a way to backspace
-                    " over something.
- 
-set autoindent      " Copy indent from current line when starting a new line
-                    " (typing <CR> in Insert mode or when using the "o" or "O"
-                    " command).
- 
-set textwidth=79    " Maximum width of text that is being inserted. A longer
-                    " line will be broken after white space to get this width.
- 
-set formatoptions=c,q,r,t " This is a sequence of letters which describes how
-                    " automatic formatting is to be done.
-                    "
-                    " letter    meaning when present in 'formatoptions'
-                    " ------    ---------------------------------------
-                    " c         Auto-wrap comments using textwidth, inserting
-                    "           the current comment leader automatically.
-                    " q         Allow formatting of comments with "gq".
-                    " r         Automatically insert the current comment leader
-                    "           after hitting <Enter> in Insert mode. 
-                    " t         Auto-wrap text using textwidth (does not apply
-                    "           to comments)
- 
-set ruler           " Show the line and column number of the cursor position,
-                    " separated by a comma.
- 
-set background=dark " When set to "dark", Vim will try to use colors that look
-                    " good on a dark background. When set to "light", Vim will
-                    " try to use colors that look good on a light background.
-                    " Any other value is illegal.
- 
-"set mouse=a         " Enable the use of the mouse.
- 
 filetype plugin indent on
+
+set shortmess+=filmnrxoOtT " abbrev. of messages (avoids 'hit enter')
+set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
+set virtualedit=onemore " allow for cursor beyond last character
+set history=1000 " Store a ton of history (default is 20)
+set spell " spell checking on
+set hidden " allow buffer switching without saving
+set backup " backups are nice ...
+"set noswapfile " make vim write to the actual files, so they can be listened for changes
+if has('persistent_undo')
+    set undofile "so is persistent undo
+    set undolevels=1000 "maximum number of changes that can be undone
+    set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+endif
+au BufWinLeave * silent! mkview "make vim save view (state) (folds, cursor, etc)
+au BufWinEnter * silent! loadview "make vim load view (state) (folds, cursor, etc)
+
+if has('cmdline_info')
+  set ruler " show the ruler
+  set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+  set showcmd " show partial commands in status line and
+" selected characters/lines in visual mode
+endif
+
+if has('statusline')
+  set laststatus=2
+endif
+
+set backspace=indent,eol,start " backspace for dummies
+set linespace=0 " No extra spaces between rows
+set nu " Line numbers on
+set showmatch " show matching brackets/parenthesis
+set incsearch " find as you type search
+set hlsearch " highlight search terms
+set winminheight=0 " windows can be 0 line high
+set ignorecase " case insensitive search
+set smartcase " case sensitive when uc present
+set wildmenu " show list instead of just completing
+set wildmode=list:longest,full " command <Tab> completion, list matches, then longest common part, then all.
+set whichwrap=b,s,h,l,<,>,[,] " backspace and cursor keys wrap to
+set scrolljump=5 " lines to scroll when cursor leaves screen
+set scrolloff=3 " minimum lines to keep above and below cursor
+set foldenable " auto fold code
+set list
+set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
+
+set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
+set shiftwidth=2    " Number of spaces to use for each step of (auto)indent.
+set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
+set smarttab        " When on, a <Tab> in front of a line inserts blanks
+set autoindent      " Copy indent from current line when starting a new line
+set formatoptions=c,q,r,t " This is a sequence of letters which describes how
+set cursorline
+set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
+"set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
+" Remove trailing whitespaces and ^M chars
+autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+
+" keep selection after editing indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" scroll with long wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+set mouse=a         " Enable the use of the mouse.
+
 syntax on
 
+set background=dark " When set to "dark", Vim will try to use colors that look
+colorscheme solarized
+set guifont=Ubuntu\ Mono\ 12
+set guioptions-=T  "remove toolbar
+
+set laststatus=2 "show powerline
+
 set iskeyword-=_ " makes _ word boundaries too
+
+function! InitializeDirectories()
+  let separator = "."
+  let parent = $HOME
+  let prefix = '.vim'
+  let dir_list = {
+        \ 'backup': 'backupdir',
+        \ 'views': 'viewdir',
+        \ 'swap': 'directory' }
+
+  if has('persistent_undo')
+    let dir_list['undo'] = 'undodir'
+  endif
+
+  for [dirname, settingname] in items(dir_list)
+    let directory = parent . '/' . prefix . dirname . "/"
+    if exists("*mkdir")
+      if !isdirectory(directory)
+        call mkdir(directory)
+      endif
+    endif
+    if !isdirectory(directory)
+      echo "Warning: Unable to create backup directory: " . directory
+      echo "Try: mkdir -p " . directory
+    else
+      let directory = substitute(directory, " ", "\\\\ ", "g")
+      exec "set " . settingname . "=" . directory
+    endif
+  endfor
+endfunction
+call InitializeDirectories()
+
+" ctrlp options
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
