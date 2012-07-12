@@ -136,6 +136,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 map <F9> :NERDTreeToggle<CR>
+call togglebg#map("<F5>") " solarized toggle
 
 " stole from spf13
 function! InitializeDirectories()
