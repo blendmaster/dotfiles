@@ -45,3 +45,9 @@ export EDITOR=vim
 
 alias ack=ack-grep
 export JAVA_HOME=/usr/lib/jvm/default-java
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# 256 color support in gnome
+# not sure how to conditionally enable it
+export TERM="xterm-256color"
