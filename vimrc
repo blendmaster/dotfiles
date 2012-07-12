@@ -7,7 +7,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'gmarik/vundle'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'mileszs/ack.vim'
@@ -21,6 +20,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'Gundo'
+Bundle 'vim-scripts/VimClojure'
 
 filetype plugin indent on
 
