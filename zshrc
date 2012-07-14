@@ -32,7 +32,7 @@ unsetopt correct_all
 setopt correct
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/gradle-1.0/bin:/opt/grails-2.0.4/bin:.
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/gradle-1.0/bin:/opt/grails-2.0.4/bin:$HOME/bin:.
 
 function gvim_background() {
   gvim $@ &
@@ -51,3 +51,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # 256 color support in gnome
 # not sure how to conditionally enable it
 export TERM="xterm-256color"
+
+. $HOME/lib/z.sh
+function precmd () {
+  _z --add "$(pwd -P)"
+}
