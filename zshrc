@@ -36,7 +36,6 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bi
 
 function gvim_background() {
   gvim $@ &
-}
 
 alias ls="ls -hF --color=auto"
 alias vi=vim

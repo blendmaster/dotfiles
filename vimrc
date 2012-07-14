@@ -7,7 +7,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'gmarik/vundle'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'mileszs/ack.vim'
@@ -21,6 +20,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'Gundo'
+Bundle 'vim-scripts/VimClojure'
 Bundle 'nathanaelkane/vim-indent-guides'
 
 filetype plugin indent on
@@ -136,6 +136,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 map <F9> :NERDTreeToggle<CR>
+call togglebg#map("<F5>") " solarized toggle
 
 " stole from spf13
 function! InitializeDirectories()
