@@ -36,6 +36,7 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bi
 
 function gvim_background() {
   gvim $@ &
+}
 
 alias ls="ls -hF --color=auto"
 alias vi=vim
@@ -52,6 +53,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export TERM="xterm-256color"
 
 . $HOME/lib/z.sh
+
 function precmd () {
   _z --add "$(pwd -P)"
 }
+
