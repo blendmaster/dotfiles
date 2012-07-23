@@ -32,7 +32,7 @@ unsetopt correct_all
 setopt correct
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/gradle-1.0/bin:/opt/grails-2.0.4/bin:$HOME/bin:.
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:$HOME/bin:.
 
 function gvim_background() {
   gvim $@ &

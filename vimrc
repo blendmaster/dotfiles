@@ -23,7 +23,7 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'paredit.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'ervandew/supertab'
-Bundle 'corntrace/bufexplorer'
+"Bundle 'corntrace/bufexplorer'
 Bundle 'scrooloose/syntastic'
 Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
@@ -31,6 +31,10 @@ Bundle 'majutsushi/tagbar'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'kshenoy/vim-signature'
+Bundle 'AutoClose'
+Bundle 'groovyindent'
+Bundle 'godlygeek/tabular'
+Bundle 'mattn/zencoding-vim'
 
 filetype plugin indent on
 
@@ -85,7 +89,7 @@ set scrolloff=3 " minimum lines to keep above and below cursor
 set foldenable " auto fold code
 set list
 set listchars=tab:▸\ ,trail:¬,extends:#,nbsp:¬ " Highlight problematic whitespace
-set colorcolumn=80
+set colorcolumn=85
 
 set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=2    " Number of spaces to use for each step of (auto)indent.
@@ -99,7 +103,7 @@ set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set gdefault " auto global replace
 "set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
 " Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy,clojure autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 " save on focus lost
 au FocusLost * :wa
