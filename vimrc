@@ -1,5 +1,5 @@
 set nocompatible               " be iMproved
-filetype off
+filetype plugin indent off
 
 " Vundle
 set rtp+=~/.vim/bundle/vundle/
@@ -31,10 +31,11 @@ Bundle 'majutsushi/tagbar'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'kshenoy/vim-signature'
-Bundle 'AutoClose'
+"Bundle 'AutoClose' "this plugin fucks with everything
 Bundle 'groovyindent'
 Bundle 'godlygeek/tabular'
 Bundle 'mattn/zencoding-vim'
+Bundle 'othree/html5.vim'
 
 filetype plugin indent on
 
@@ -42,7 +43,7 @@ set shortmess+=filmnrxoOtT " abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
 set virtualedit=onemore " allow for cursor beyond last character
 set history=1000 " Store a ton of history (default is 20)
-set spell " spell checking on
+" set spell " spell check highlight on, annoying usually
 set hidden " allow buffer switching without saving
 set backup " backups are nice ...
 "set noswapfile " make vim write to the actual files, so they can be listened for changes
@@ -97,11 +98,11 @@ set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
 set smarttab        " When on, a <Tab> in front of a line inserts blanks
 set autoindent      " Copy indent from current line when starting a new line
 set wrap
-set formatoptions=qrn1 " stuff?
+set formatoptions=qcrn1 " stuff?
 set cursorline
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set gdefault " auto global replace
-"set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
+set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
 " Remove trailing whitespaces and ^M chars
 autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy,clojure autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
@@ -131,6 +132,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 set mouse=a         " Enable the use of the mouse.
+set mousemodel=popup_setpos " enable right click menu
 
 syntax on
 
@@ -212,9 +214,6 @@ let g:neocomplcache_enable_auto_delimiter = 1
 " AutoComplPop like behavior.
 let g:neocomplcache_enable_auto_select = 0
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " Plugin key-mappings.
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
@@ -256,3 +255,5 @@ if has('conceal')
     set conceallevel=2 concealcursor=i
 end
 
+" SuperTab like snippets behavior.
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
