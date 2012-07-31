@@ -1,7 +1,7 @@
 set nocompatible               " be iMproved
-filetype plugin indent off
 
 " Vundle
+filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -54,6 +54,12 @@ if has('persistent_undo')
 endif
 au BufWinLeave * silent! mkview "make vim save view (state) (folds, cursor, etc)
 au BufWinEnter * silent! loadview "make vim load view (state) (folds, cursor, etc)
+
+set autowrite
+set autoread
+set clipboard+=unnamed "yanks to system clipboard
+set cf " error jumping
+
 
 if has('cmdline_info')
   set ruler " show the ruler
@@ -153,37 +159,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 map <F9> :NERDTreeToggle<CR>
 call togglebg#map("<F5>") " solarized toggle
 
-" stole from spf13
-function! InitializeDirectories()
-  let separator = "."
-  let parent = $HOME
-  let prefix = '.vim'
-  let dir_list = {
-        \ 'backup': 'backupdir',
-        \ 'views': 'viewdir',
-        \ 'swap': 'directory' }
-
-  if has('persistent_undo')
-    let dir_list['undo'] = 'undodir'
-  endif
-
-  for [dirname, settingname] in items(dir_list)
-    let directory = parent . '/' . prefix . dirname . "/"
-    if exists("*mkdir")
-      if !isdirectory(directory)
-        call mkdir(directory)
-      endif
-    endif
-    if !isdirectory(directory)
-      echo "Warning: Unable to create backup directory: " . directory
-      echo "Try: mkdir -p " . directory
-    else
-      let directory = substitute(directory, " ", "\\\\ ", "g")
-      exec "set " . settingname . "=" . directory
-    endif
-  endfor
-endfunction
-call InitializeDirectories()
 
 " ctrlp options
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
@@ -257,3 +232,36 @@ end
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" stole from spf13
+function! InitializeDirectories()
+  let separator = "."
+  let parent = $HOME
+  let prefix = '.vim'
+  let dir_list = {
+	\ 'backup': 'backupdir',
+	\ 'views': 'viewdir',
+	\ 'swap': 'directory' }
+
+  if has('persistent_undo')
+    let dir_list['undo'] = 'undodir'
+  endif
+
+  for [dirname, settingname] in items(dir_list)
+    let directory = parent . '/' . prefix . dirname . "/"
+    if exists("*mkdir")
+      if !isdirectory(directory)
+	call mkdir(directory)
+      endif
+    endif
+    if !isdirectory(directory)
+      echo "Warning: Unable to create backup directory: " . directory
+      echo "Try: mkdir -p " . directory
+    else
+      let directory = substitute(directory, " ", "\\\\ ", "g")
+      exec "set " . settingname . "=" . directory
+    endif
+  endfor
+endfunction
+call InitializeDirectories()
+
