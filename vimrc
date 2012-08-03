@@ -32,10 +32,10 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'kshenoy/vim-signature'
 "Bundle 'AutoClose' "this plugin fucks with everything
-Bundle 'groovyindent'
 Bundle 'godlygeek/tabular'
 Bundle 'mattn/zencoding-vim'
 Bundle 'othree/html5.vim'
+Bundle 'sudo.vim'
 
 filetype plugin indent on
 
