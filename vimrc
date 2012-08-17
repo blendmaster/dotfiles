@@ -108,7 +108,6 @@ set formatoptions=qcrn1 " stuff?
 set cursorline
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set gdefault " auto global replace
-set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
 " Remove trailing whitespaces and ^M chars
 autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy,clojure autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
@@ -158,7 +157,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 map <F9> :NERDTreeToggle<CR>
 call togglebg#map("<F5>") " solarized toggle
-
 
 " ctrlp options
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
@@ -265,3 +263,7 @@ function! InitializeDirectories()
 endfunction
 call InitializeDirectories()
 
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
