@@ -1,0 +1,5 @@
+--type-set
+groovy=.groovy,.gradle
+
+--type-set
+clojure=.clj

@@ -1,7 +1,7 @@
 set nocompatible               " be iMproved
-filetype off
 
 " Vundle
+filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -23,7 +23,7 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'paredit.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'ervandew/supertab'
-Bundle 'corntrace/bufexplorer'
+"Bundle 'corntrace/bufexplorer'
 Bundle 'scrooloose/syntastic'
 Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
@@ -33,6 +33,11 @@ Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'kshenoy/vim-signature'
 Bundle 'satyr/vim-coco'
 Bundle 'wavded/vim-stylus'
+"Bundle 'AutoClose' "this plugin fucks with everything
+Bundle 'godlygeek/tabular'
+Bundle 'mattn/zencoding-vim'
+Bundle 'othree/html5.vim'
+Bundle 'sudo.vim'
 
 filetype plugin indent on
 
@@ -40,7 +45,7 @@ set shortmess+=filmnrxoOtT " abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
 set virtualedit=onemore " allow for cursor beyond last character
 set history=1000 " Store a ton of history (default is 20)
-set spell " spell checking on
+" set spell " spell check highlight on, annoying usually
 set hidden " allow buffer switching without saving
 set backup " backups are nice ...
 "set noswapfile " make vim write to the actual files, so they can be listened for changes
@@ -51,6 +56,12 @@ if has('persistent_undo')
 endif
 au BufWinLeave * silent! mkview "make vim save view (state) (folds, cursor, etc)
 au BufWinEnter * silent! loadview "make vim load view (state) (folds, cursor, etc)
+
+set autowrite
+set autoread
+set clipboard+=unnamed "yanks to system clipboard
+set cf " error jumping
+
 
 if has('cmdline_info')
   set ruler " show the ruler
@@ -87,7 +98,7 @@ set scrolloff=3 " minimum lines to keep above and below cursor
 set foldenable " auto fold code
 set list
 set listchars=tab:▸\ ,trail:¬,extends:#,nbsp:¬ " Highlight problematic whitespace
-set colorcolumn=80
+set colorcolumn=85
 
 set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=2    " Number of spaces to use for each step of (auto)indent.
@@ -95,13 +106,12 @@ set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
 set smarttab        " When on, a <Tab> in front of a line inserts blanks
 set autoindent      " Copy indent from current line when starting a new line
 set wrap
-set formatoptions=qrn1 " stuff?
+set formatoptions=qcrn1 " stuff?
 set cursorline
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set gdefault " auto global replace
-"set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
 " Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy,clojure autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 " save on focus lost
 au FocusLost * :wa
@@ -129,6 +139,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 set mouse=a         " Enable the use of the mouse.
+set mousemodel=popup_setpos " enable right click menu
 
 syntax on
 
@@ -148,38 +159,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 map <F9> :NERDTreeToggle<CR>
 call togglebg#map("<F5>") " solarized toggle
-
-" stole from spf13
-function! InitializeDirectories()
-  let separator = "."
-  let parent = $HOME
-  let prefix = '.vim'
-  let dir_list = {
-        \ 'backup': 'backupdir',
-        \ 'views': 'viewdir',
-        \ 'swap': 'directory' }
-
-  if has('persistent_undo')
-    let dir_list['undo'] = 'undodir'
-  endif
-
-  for [dirname, settingname] in items(dir_list)
-    let directory = parent . '/' . prefix . dirname . "/"
-    if exists("*mkdir")
-      if !isdirectory(directory)
-        call mkdir(directory)
-      endif
-    endif
-    if !isdirectory(directory)
-      echo "Warning: Unable to create backup directory: " . directory
-      echo "Try: mkdir -p " . directory
-    else
-      let directory = substitute(directory, " ", "\\\\ ", "g")
-      exec "set " . settingname . "=" . directory
-    endif
-  endfor
-endfunction
-call InitializeDirectories()
 
 " ctrlp options
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
@@ -209,9 +188,6 @@ let g:neocomplcache_enable_auto_delimiter = 1
 
 " AutoComplPop like behavior.
 let g:neocomplcache_enable_auto_select = 0
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Plugin key-mappings.
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
@@ -254,3 +230,42 @@ if has('conceal')
     set conceallevel=2 concealcursor=i
 end
 
+" SuperTab like snippets behavior.
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" stole from spf13
+function! InitializeDirectories()
+  let separator = "."
+  let parent = $HOME
+  let prefix = '.vim'
+  let dir_list = {
+	\ 'backup': 'backupdir',
+	\ 'views': 'viewdir',
+	\ 'swap': 'directory' }
+
+  if has('persistent_undo')
+    let dir_list['undo'] = 'undodir'
+  endif
+
+  for [dirname, settingname] in items(dir_list)
+    let directory = parent . '/' . prefix . dirname . "/"
+    if exists("*mkdir")
+      if !isdirectory(directory)
+	call mkdir(directory)
+      endif
+    endif
+    if !isdirectory(directory)
+      echo "Warning: Unable to create backup directory: " . directory
+      echo "Try: mkdir -p " . directory
+    else
+      let directory = substitute(directory, " ", "\\\\ ", "g")
+      exec "set " . settingname . "=" . directory
+    endif
+  endfor
+endfunction
+call InitializeDirectories()
+
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
