@@ -31,6 +31,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'kshenoy/vim-signature'
+Bundle 'satyr/vim-coco'
+Bundle 'wavded/vim-stylus'
 
 filetype plugin indent on
 
