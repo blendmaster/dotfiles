@@ -1,0 +1,15 @@
+"1.0
+
+loadplugins '\.(js|penta)$'
+group user
+
+" vim: set ft=pentadactyl:
+
+set passkeys+=www.google.com/reader/:jkv<Space><S-Space>
+
+" easier half-page scrolling
+map J <C-d>
+map K <C-u>
+
+" toggle statusbar
+map -ex <F2> set guioptions!=s
