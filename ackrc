@@ -3,3 +3,6 @@ groovy=.groovy,.gradle
 
 --type-set
 clojure=.clj
+
+--type-set
+coco=.co,Cokefile
