@@ -29,7 +29,6 @@ Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
 Bundle 'majutsushi/tagbar'
 Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'kshenoy/vim-signature'
 Bundle 'satyr/vim-coco'
 Bundle 'wavded/vim-stylus'
@@ -61,7 +60,6 @@ set autowrite
 set autoread
 set clipboard+=unnamed "yanks to system clipboard
 set cf " error jumping
-
 
 if has('cmdline_info')
   set ruler " show the ruler
@@ -145,7 +143,7 @@ syntax on
 
 set background=dark " When set to "dark", Vim will try to use colors that look
 colorscheme solarized
-set guifont=Ubuntu\ Mono\ 12
+set guifont=Ubuntu\ Mono\ 11
 set guioptions-=T  "remove toolbar
 
 set laststatus=2 "show powerline
