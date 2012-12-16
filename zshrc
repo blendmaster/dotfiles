@@ -24,7 +24,7 @@ ZSH_THEME="norm"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(ruby arch rails3 archlinux git vi-mode)
+plugins=(ruby arch rails3 debian command-not-found git lein)
 
 source $ZSH/oh-my-zsh.sh
 #correction is annoying
@@ -52,9 +52,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # not sure how to conditionally enable it
 export TERM="xterm-256color"
 
-. $HOME/lib/z.sh
+# install fasd for better completion
+eval "$(fasd --init auto)"
 
-function precmd () {
-  _z --add "$(pwd -P)"
-}
-
+# wrap git with hub
+eval "$(hub alias -s)"
