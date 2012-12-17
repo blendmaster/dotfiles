@@ -34,6 +34,11 @@ Bundle 'satyr/vim-coco'
 Bundle 'wavded/vim-stylus'
 "Bundle 'AutoClose' "this plugin fucks with everything
 Bundle 'godlygeek/tabular'
+Bundle 'kshenoy/vim-signature'
+Bundle 'satyr/vim-coco'
+Bundle 'wavded/vim-stylus'
+"Bundle 'AutoClose' "this plugin fucks with everything
+Bundle 'godlygeek/tabular'
 Bundle 'mattn/zencoding-vim'
 Bundle 'othree/html5.vim'
 Bundle 'sudo.vim'
@@ -59,6 +64,7 @@ au BufWinEnter * silent! loadview "make vim load view (state) (folds, cursor, et
 set autowrite
 set autoread
 set clipboard+=unnamed "yanks to system clipboard
+set clipboard+=unnamedplus "yanks to system clipboard
 set cf " error jumping
 
 if has('cmdline_info')
@@ -109,7 +115,7 @@ set cursorline
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set gdefault " auto global replace
 " Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy,clojure autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy,clojure,co autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 " save on focus lost
 au FocusLost * :wa
