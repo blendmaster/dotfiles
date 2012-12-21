@@ -29,19 +29,16 @@ Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
 Bundle 'majutsushi/tagbar'
 Bundle 'Shougo/neocomplcache'
-Bundle 'kshenoy/vim-signature'
-Bundle 'satyr/vim-coco'
-Bundle 'wavded/vim-stylus'
-"Bundle 'AutoClose' "this plugin fucks with everything
 Bundle 'godlygeek/tabular'
 Bundle 'kshenoy/vim-signature'
 Bundle 'satyr/vim-coco'
 Bundle 'wavded/vim-stylus'
-"Bundle 'AutoClose' "this plugin fucks with everything
-Bundle 'godlygeek/tabular'
 Bundle 'mattn/zencoding-vim'
 Bundle 'othree/html5.vim'
 Bundle 'sudo.vim'
+Bundle 'camelcasemotion'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'YankRing.vim'
 
 filetype plugin indent on
 
@@ -52,7 +49,7 @@ set history=1000 " Store a ton of history (default is 20)
 " set spell " spell check highlight on, annoying usually
 set hidden " allow buffer switching without saving
 set backup " backups are nice ...
-"set noswapfile " make vim write to the actual files, so they can be listened for changes
+set noswapfile " swapfiles are lame
 if has('persistent_undo')
     set undofile "so is persistent undo
     set undolevels=1000 "maximum number of changes that can be undone
@@ -63,8 +60,7 @@ au BufWinEnter * silent! loadview "make vim load view (state) (folds, cursor, et
 
 set autowrite
 set autoread
-set clipboard+=unnamed "yanks to system clipboard
-set clipboard+=unnamedplus "yanks to system clipboard
+set clipboard=unnamedplus " default yank to system clipboard. ctrl+c/v works as expected
 set cf " error jumping
 
 if has('cmdline_info')
@@ -86,11 +82,11 @@ set ttyfast
 
 set backspace=indent,eol,start " backspace for dummies
 set linespace=0 " No extra spaces between rows
-set nu " Line numbers on
-set relativenumber " relative
+" line numbers are obsolete
+set nonu " Line numbers off
+set norelativenumber " no relative
 set showmatch " show matching brackets/parenthesis
 set incsearch " find as you type search
-set hlsearch " highlight search terms
 set winminheight=0 " windows can be 0 line high
 set ignorecase " case insensitive search
 set smartcase " case sensitive when uc present
@@ -118,13 +114,9 @@ set gdefault " auto global replace
 autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy,clojure,co autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 " save on focus lost
-au FocusLost * :wa
+au FocusLost * silent! :wa
 
 let mapleader = ","
-
-" unstupid regexes
-nnoremap / /\v
-vnoremap / /\v
 
 " keep selection after editing indentation
 vnoremap < <gv
@@ -136,6 +128,9 @@ nnoremap k gk
 
 " shortcuts
 nnoremap ; :
+
+" toggle search highlighting
+nnoremap <Leader> <Space> :set hlsearch!<CR>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -154,8 +149,6 @@ set guioptions-=T  "remove toolbar
 
 set laststatus=2 "show powerline
 
-set iskeyword-=_ " makes _ word boundaries too
-
 " open NERDtree automatically
 autocmd vimenter * if !argc() | NERDTree | endif
 "close vim automatically
@@ -164,13 +157,20 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 map <F9> :NERDTreeToggle<CR>
 call togglebg#map("<F5>") " solarized toggle
 
-" ctrlp options
+" ctrlp options"
+let g:ctrlp_map = '<c-q>'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+
+"Gundo
+map <F7> :GundoToggle<CR>
 
 "vimclojure
 let vimclojure#WantNailgun = 1
 let g:vimclojure#ParenRainbow = 1
+
+"YankRing
+:nnoremap <silent> <F11> :YRShow<CR>
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -226,7 +226,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 ""autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 "let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+"ilet g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 "let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
 " For snippet_complete marker.
@@ -243,9 +243,9 @@ function! InitializeDirectories()
   let parent = $HOME
   let prefix = '.vim'
   let dir_list = {
-	\ 'backup': 'backupdir',
-	\ 'views': 'viewdir',
-	\ 'swap': 'directory' }
+  \ 'backup': 'backupdir',
+  \ 'views': 'viewdir',
+  \ 'swap': 'directory' }
 
   if has('persistent_undo')
     let dir_list['undo'] = 'undodir'
@@ -255,7 +255,7 @@ function! InitializeDirectories()
     let directory = parent . '/' . prefix . dirname . "/"
     if exists("*mkdir")
       if !isdirectory(directory)
-	call mkdir(directory)
+        call mkdir(directory)
       endif
     endif
     if !isdirectory(directory)
@@ -270,6 +270,6 @@ endfunction
 call InitializeDirectories()
 
 " Source the vimrc file after saving it
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+"if has("autocmd")
+  "autocmd bufwritepost .vimrc source $MYVIMRC
+"endif
