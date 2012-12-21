@@ -182,6 +182,11 @@ let g:tagbar_type_clojure = {
   \ ]
 \ }
 
+" make indent guides more subtle
+let g:indent_guides_color_change_percent = 3
+let g:indent_guides_start_level = 2
+let g:indent_guides_enable_on_vim_startup = 0
+
 "neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
