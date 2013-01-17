@@ -3,3 +3,4 @@ lein/self-installs
 xmonad/xmonad.errors
 xmonad/xmonad.hi
 xmonad/xmonad.o
+config/compiz-1
