@@ -31,6 +31,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'Shougo/neocomplcache'
 Bundle 'godlygeek/tabular'
 Bundle 'kshenoy/vim-signature'
+
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'satyr/vim-coco'
 Bundle 'wavded/vim-stylus'
 Bundle 'mattn/zencoding-vim'
