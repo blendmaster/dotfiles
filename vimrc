@@ -19,7 +19,10 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'Gundo'
-Bundle 'vim-scripts/VimClojure'
+Bundle 'tpope/vim-foreplay'
+Bundle 'tpope/vim-classpath'
+Bundle 'guns/vim-clojure-static'
+Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'paredit.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'ervandew/supertab'
@@ -166,10 +169,6 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 "Gundo
 map <F7> :GundoToggle<CR>
-
-"vimclojure
-let vimclojure#WantNailgun = 1
-let g:vimclojure#ParenRainbow = 1
 
 "YankRing
 :nnoremap <silent> <F11> :YRShow<CR>
