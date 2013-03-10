@@ -11,7 +11,11 @@ Bundle 'tomtom/tlib_vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'altercation/vim-colors-solarized'
+
+" Wait till out of beta
+" Bundle 'Lokaltog/powerline'
 Bundle 'Lokaltog/vim-powerline'
+
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdcommenter'
@@ -150,8 +154,6 @@ set background=dark " When set to "dark", Vim will try to use colors that look
 colorscheme solarized
 set guifont=Ubuntu\ Mono\ 11
 set guioptions-=T  "remove toolbar
-
-set laststatus=2 "show powerline
 
 " open NERDtree automatically
 autocmd vimenter * if !argc() | NERDTree | endif
