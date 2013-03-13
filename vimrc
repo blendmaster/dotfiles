@@ -10,6 +10,7 @@ Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 
 Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 
 Bundle 'Lokaltog/vim-easymotion'
 
