@@ -8,8 +8,11 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
+
 Bundle 'mileszs/ack.vim'
+
 Bundle 'Lokaltog/vim-easymotion'
+
 Bundle 'altercation/vim-colors-solarized'
 
 " Wait till out of beta
@@ -17,22 +20,32 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'Lokaltog/vim-powerline'
 
 Bundle 'tpope/vim-fugitive'
+
 Bundle 'tpope/vim-surround'
+
 Bundle 'scrooloose/nerdcommenter'
+
 Bundle 'kien/ctrlp.vim'
+
 Bundle 'scrooloose/nerdtree'
+
 Bundle 'scrooloose/syntastic'
+
 Bundle 'Gundo'
+
 Bundle 'tpope/vim-foreplay'
 Bundle 'tpope/vim-classpath'
 Bundle 'guns/vim-clojure-static'
 Bundle 'paredit.vim'
+
 Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'ervandew/supertab'
-"Bundle 'corntrace/bufexplorer'
+
 Bundle 'scrooloose/syntastic'
+
 Bundle 'majutsushi/tagbar'
+
 Bundle 'godlygeek/tabular'
+
 Bundle 'kshenoy/vim-signature'
 
 Bundle 'Valloric/YouCompleteMe'
@@ -42,11 +55,15 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'satyr/vim-coco'
 Bundle 'wavded/vim-stylus'
+
 Bundle 'mattn/zencoding-vim'
 Bundle 'othree/html5.vim'
+
 Bundle 'sudo.vim'
+
 Bundle 'camelcasemotion'
 Bundle 'michaeljsmith/vim-indent-object'
+
 Bundle 'YankRing.vim'
 
 filetype plugin indent on
