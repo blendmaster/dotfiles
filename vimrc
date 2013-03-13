@@ -35,7 +35,9 @@ Bundle 'majutsushi/tagbar'
 Bundle 'godlygeek/tabular'
 Bundle 'kshenoy/vim-signature'
 
-Bundle 'valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
+
+Bundle 'Raimondi/delimitMate'
 
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'satyr/vim-coco'
