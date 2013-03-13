@@ -183,9 +183,13 @@ map <F9> :NERDTreeToggle<CR>
 call togglebg#map("<F5>") " solarized toggle
 
 " ctrlp options"
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_map = '<c-q>'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+" defer to git ls for faster listening
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
 "Gundo
 map <F7> :GundoToggle<CR>
