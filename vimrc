@@ -158,6 +158,12 @@ au CursorHold * silent! if &noro | w | endif
 
 let mapleader = ","
 
+" Remap j/k to easymotion versions
+noremap j <NOP>
+noremap k <NOP>
+let g:EasyMotion_mapping_j='j'
+let g:EasyMotion_mapping_k='k'
+
 " keep selection after editing indentation
 vnoremap < <gv
 vnoremap > >gv
