@@ -24,6 +24,10 @@ Bundle 'tpope/vim-fugitive'
 
 Bundle 'tpope/vim-surround'
 
+Bundle 'tpope/vim-repeat'
+
+Bundle 'tpope/vim-unimpaired'
+
 Bundle 'scrooloose/nerdcommenter'
 
 Bundle 'kien/ctrlp.vim'
