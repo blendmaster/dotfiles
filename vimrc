@@ -137,8 +137,16 @@ set formatoptions=qcrn1 " stuff?
 set cursorline
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set gdefault " auto global replace
-" Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy,clojure,co autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+
+" Remove trailing whitespaces
+" dangerous with non-text files, but who ever edits those?
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
 
 " save on focus lost
 au FocusLost * silent! :wa
