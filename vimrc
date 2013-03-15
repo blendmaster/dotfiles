@@ -71,9 +71,9 @@ Bundle 'goldfeld/vim-seek'
 
 filetype plugin indent on
 
+set virtualedit=block " Allow movement on non-present characters in block mode
 set shortmess+=filmnrxoOtT " abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
-set virtualedit=onemore " allow for cursor beyond last character
 set history=1000 " Store a ton of history (default is 20)
 " set spell " spell check highlight on, annoying usually
 set hidden " allow buffer switching without saving
@@ -149,6 +149,9 @@ fun! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
+
+" spellcheck is annoying globally, but useful in pure text settings
+autocmd Syntax text,markdown,gitcommit setlocal spell
 
 " save on focus lost
 au FocusLost * silent! :wa
