@@ -67,6 +67,8 @@ Bundle 'michaeljsmith/vim-indent-object'
 
 Bundle 'YankRing.vim'
 
+Bundle 'goldfeld/vim-seek'
+
 filetype plugin indent on
 
 set shortmess+=filmnrxoOtT " abbrev. of messages (avoids 'hit enter')
