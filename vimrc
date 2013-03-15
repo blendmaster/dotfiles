@@ -154,7 +154,7 @@ au FocusLost * silent! :wa
 au InsertLeave * silent! :w
 " save current file if nothing is pressed for `updatetime` ms (in normal mode)
 set updatetime=500
-au CursorHold * silent! :w
+au CursorHold * silent! if &noro | w | endif
 
 let mapleader = ","
 
