@@ -142,6 +142,11 @@ autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,groovy,clojure,co
 
 " save on focus lost
 au FocusLost * silent! :wa
+" save current file when leaving insert mode
+au InsertLeave * silent! :w
+" save current file if nothing is pressed for `updatetime` ms (in normal mode)
+set updatetime=500
+au CursorHold * silent! :w
 
 let mapleader = ","
 
@@ -243,8 +248,3 @@ function! InitializeDirectories()
   endfor
 endfunction
 call InitializeDirectories()
-
-" Source the vimrc file after saving it
-"if has("autocmd")
-  "autocmd bufwritepost .vimrc source $MYVIMRC
-"endif
