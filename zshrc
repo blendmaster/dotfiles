@@ -24,12 +24,29 @@ ZSH_THEME="norm"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(ruby arch rails3 debian command-not-found git lein gas)
+plugins=(ruby \
+         arch \
+         rails3 \
+         debian \
+         command-not-found \
+         git \
+         lein \
+         gas \
+         git-extras \
+         dirpersist \
+         dircycle \
+         last-working-dir \
+         npm \
+         per-directory-history \
+         github)
 
 source $ZSH/oh-my-zsh.sh
 #correction is annoying
 unsetopt correct_all
 setopt correct
+
+# prevent > redirection to existing files without >!
+setopt noclobber
 
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:$HOME/bin:.
