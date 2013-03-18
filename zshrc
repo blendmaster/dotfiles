@@ -25,7 +25,7 @@ ZSH_THEME="norm"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(ruby \
-         arch \
+         archlinux \
          rails3 \
          debian \
          command-not-found \
