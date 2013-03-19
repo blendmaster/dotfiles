@@ -45,8 +45,6 @@ Bundle 'paredit.vim'
 
 Bundle 'nathanaelkane/vim-indent-guides'
 
-Bundle 'scrooloose/syntastic'
-
 Bundle 'majutsushi/tagbar'
 
 Bundle 'godlygeek/tabular'
@@ -172,6 +170,14 @@ noremap j <NOP>
 noremap k <NOP>
 let g:EasyMotion_mapping_j='j'
 let g:EasyMotion_mapping_k='k'
+
+" Use only one leader for more useful motions
+" XXX would set custom leader key for all mappings but
+" it doesn't work for some reason
+" FIXME neither does this. what the fuck
+"let g:EasyMotion_mapping_w=',w'
+"let g:EasyMotion_mapping_e=',e'
+"let g:EasyMotion_mapping_b=',b'
 
 " keep selection after editing indentation
 vnoremap < <gv
