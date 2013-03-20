@@ -35,9 +35,7 @@ plugins=(ruby \
          git-extras \
          dirpersist \
          dircycle \
-         last-working-dir \
          npm \
-         per-directory-history \
          github)
 
 source $ZSH/oh-my-zsh.sh
