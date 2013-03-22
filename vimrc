@@ -166,10 +166,14 @@ au CursorHold * silent! if &noro | w | endif
 let mapleader = ","
 
 " Remap j/k to easymotion versions
-noremap j <NOP>
-noremap k <NOP>
-let g:EasyMotion_mapping_j='j'
-let g:EasyMotion_mapping_k='k'
+" Too annoying, since easymotion also takes over block visual mode, and ezj/k
+" will jump to the beginning of the line (destroying the selected block
+" usually)
+" will muscle train myself motions some other way
+"nnoremap j <NOP>
+"nnoremap k <NOP>
+"let g:EasyMotion_mapping_j='j'
+"let g:EasyMotion_mapping_k='k'
 
 " Use only one leader for more useful motions
 " XXX would set custom leader key for all mappings but
