@@ -2,4 +2,4 @@
 	email = blendmaster@gmail.com
 	name = Steven Ruppert
 [push]
-	default = simple
+	default = current
