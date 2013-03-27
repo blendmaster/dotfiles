@@ -77,7 +77,6 @@ set virtualedit=block " Allow movement on non-present characters in block mode
 set shortmess+=filmnrxoOtT " abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
 set history=1000 " Store a ton of history (default is 20)
-" set spell " spell check highlight on, annoying usually
 set hidden " allow buffer switching without saving
 set backup " backups are nice ...
 set noswapfile " swapfiles are lame
@@ -152,8 +151,8 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-" spellcheck is annoying globally, but useful in pure text settings
-autocmd Syntax text,markdown,gitcommit setlocal spell
+" toggle spellcheck, which is usually annoying but sometimes useful
+map <F5> :setlocal spell! spelllang=en_us<CR>
 
 " save on focus lost
 au FocusLost * silent! :wa
@@ -218,7 +217,6 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 map <F9> :NERDTreeToggle<CR>
-call togglebg#map("<F5>") " solarized toggle
 
 " ctrlp options"
 let g:ctrlp_use_caching = 1
