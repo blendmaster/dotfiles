@@ -33,6 +33,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'kien/ctrlp.vim'
 
 Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 
 Bundle 'scrooloose/syntastic'
 
@@ -217,12 +218,7 @@ colorscheme solarized
 set guifont=Ubuntu\ Mono\ 11
 set guioptions-=T  "remove toolbar
 
-" open NERDtree automatically
-autocmd vimenter * if !argc() | NERDTree | endif
-"close vim automatically
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-map <F9> :NERDTreeToggle<CR>
+map <F9> :NERDTreeTabsToggle<CR>
 
 " ctrlp options"
 let g:ctrlp_use_caching = 1
