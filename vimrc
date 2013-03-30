@@ -162,6 +162,12 @@ au InsertLeave * silent! :w
 set updatetime=500
 au CursorHold * silent! if &noro | w | endif
 
+" enable delimit mate expanders
+let delimitMate_expand_space = 1
+let delimitMate_expand_cr = 1
+" balance matchpairs should make fixing or moving parens easier
+let delimitMate_balance_matchpairs = 1
+
 let mapleader = ","
 
 " Remap j/k to easymotion versions
