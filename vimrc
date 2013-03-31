@@ -155,14 +155,6 @@ endfun
 " toggle spellcheck, which is usually annoying but sometimes useful
 map <F5> :setlocal spell! spelllang=en_us<CR>
 
-" save on focus lost
-au FocusLost * silent! :wa
-" save current file when leaving insert mode
-au InsertLeave * silent! :w
-" save current file if nothing is pressed for `updatetime` ms (in normal mode)
-set updatetime=500
-au CursorHold * silent! if &noro | w | endif
-
 " enable delimit mate expanders
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
@@ -281,3 +273,18 @@ function! InitializeDirectories()
   endfor
 endfunction
 call InitializeDirectories()
+
+" Autosave files on changes because explicitly saving to persistent storage is
+" old-fashioned
+
+" save on focus lost
+au FocusLost * silent! :wa
+" save current file when leaving insert mode
+au InsertLeave * silent! :w
+" save current file if nothing is pressed for `updatetime` ms (in normal mode)
+au CursorHold * if !&ro | silent! w | endif
+
+" stop ycm from changing updatetime to 2000
+let g:ycm_allow_changing_updatetime = 0
+set updatetime=250
+
