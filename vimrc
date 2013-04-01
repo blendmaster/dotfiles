@@ -113,9 +113,8 @@ set ttyfast
 
 set backspace=indent,eol,start " backspace for dummies
 set linespace=0 " No extra spaces between rows
-" line numbers are obsolete
 set nonu " Line numbers off
-set norelativenumber " no relative
+set relativenumber " relative numbers are more useful
 set showmatch " show matching brackets/parenthesis
 set incsearch " find as you type search
 set winminheight=0 " windows can be 0 line high
@@ -139,6 +138,7 @@ set autoindent      " Copy indent from current line when starting a new line
 set wrap
 set formatoptions=qcrn1 " stuff?
 set cursorline
+set cursorcolumn " I kinda like the crosshairs actually
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set gdefault " auto global replace
 
