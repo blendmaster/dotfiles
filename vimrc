@@ -16,9 +16,8 @@ Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'altercation/vim-colors-solarized'
 
-" Wait till out of beta
-" Bundle 'Lokaltog/powerline'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/powerline'
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 Bundle 'tpope/vim-fugitive'
 
@@ -52,7 +51,8 @@ Bundle 'godlygeek/tabular'
 
 Bundle 'kshenoy/vim-signature'
 
-Bundle 'Valloric/YouCompleteMe'
+" requires python2 in comflict with powerline (python 3)
+"Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'Raimondi/delimitMate'
 
@@ -94,16 +94,7 @@ set autoread
 set clipboard=unnamedplus " default yank to system clipboard. ctrl+c/v works as expected
 set cf " error jumping
 
-if has('cmdline_info')
-  set ruler " show the ruler
-  set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
-  set showcmd " show partial commands in status line and
-" selected characters/lines in visual mode
-endif
-
-if has('statusline')
-  set laststatus=2
-endif
+set laststatus=2 " always show powerline
 
 " why not
 set encoding=utf-8
