@@ -145,6 +145,8 @@ endfun
 
 " toggle spellcheck, which is usually annoying but sometimes useful
 map <F5> :setlocal spell! spelllang=en_us<CR>
+" enable by default on plaintext files
+au Syntax txt,gitcommit :setlocal spell!
 
 " enable delimit mate expanders
 let delimitMate_expand_space = 1
