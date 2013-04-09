@@ -51,8 +51,7 @@ Bundle 'godlygeek/tabular'
 
 Bundle 'kshenoy/vim-signature'
 
-" requires python2 in comflict with powerline (python 3)
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'Raimondi/delimitMate'
 
