@@ -71,6 +71,8 @@ Bundle 'YankRing.vim'
 
 Bundle 'goldfeld/vim-seek'
 
+Bundle 'SirVer/ultisnips'
+
 filetype plugin indent on
 
 set virtualedit=block " Allow movement on non-present characters in block mode
