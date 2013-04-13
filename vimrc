@@ -51,7 +51,14 @@ Bundle 'godlygeek/tabular'
 
 Bundle 'kshenoy/vim-signature'
 
-Bundle 'Valloric/YouCompleteMe'
+" python2 and python3 support in vim can't be enabled at the same time, so I'm
+" ditching the arguably superior YCM for neocomplcache
+" Bundle 'Valloric/YouCompleteMe'
+Bundle "Shougo/neocomplcache"
+
+Bundle 'SirVer/ultisnips'
+Bundle 'JazzCore/neocomplcache-ultisnips'
+Bundle "honza/vim-snippets"
 
 Bundle 'Raimondi/delimitMate'
 
@@ -70,8 +77,6 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'YankRing.vim'
 
 Bundle 'goldfeld/vim-seek'
-
-Bundle 'SirVer/ultisnips'
 
 filetype plugin indent on
 
@@ -279,6 +284,26 @@ au InsertLeave * silent! :w
 au CursorHold * if !&ro | silent! w | endif
 
 " stop ycm from changing updatetime to 2000
-let g:ycm_allow_changing_updatetime = 0
+"let g:ycm_allow_changing_updatetime = 0
 set updatetime=250
 
+" NeoComplCache options
+let g:neocomplcache_enable_at_startup = 1
+
+" there's a lot of other shit that NCC does, but I'll stick with the basics
+" for now. YCM seems technically superior except for the stupid python2
+" dependency.
+
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
