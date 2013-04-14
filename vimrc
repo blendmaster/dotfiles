@@ -316,10 +316,6 @@ let g:tagbar_type_co = {
       \ 'f:functions',
       \ 'v:variables',
  \ ],
- \ 'sro' : ".",
- \ 'kind2scope' : {
-   \ 'v' : 'function',
-   \ 'f' : 'class'
- \ }
+ \ 'sro' : "."
 \ }
 
