@@ -133,7 +133,7 @@ set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
 set smarttab        " When on, a <Tab> in front of a line inserts blanks
 set autoindent      " Copy indent from current line when starting a new line
 set wrap
-set formatoptions=tcrqwan1j " help formatoptions. in essense, autowrap when not annoying
+set formatoptions=tcrqwn1j " help formatoptions. in essense, autowrap when not annoying
 set cursorline
 set cursorcolumn " I kinda like the crosshairs actually
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
