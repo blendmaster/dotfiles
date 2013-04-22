@@ -279,9 +279,9 @@ call InitializeDirectories()
 " save on focus lost
 au FocusLost * silent! :wa
 " save current file when leaving insert mode
-au InsertLeave * silent! :w
+au InsertLeave * if !&readonly && &modifiable && &modified | silent! :w | endif
 " save current file if nothing is pressed for `updatetime` ms (in normal mode)
-au CursorHold * if !&ro | silent! w | endif
+au CursorHold * if !&readonly && &modifiable && &modified | silent! w | endif
 
 " stop ycm from changing updatetime to 2000
 "let g:ycm_allow_changing_updatetime = 0
